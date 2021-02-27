@@ -18,7 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 @Scope("singleton")
 public class HubService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(RedisMessageReceiver.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HubService.class);
 
     final private String nodeId;
 
@@ -50,6 +50,10 @@ public class HubService {
         Map<String, User> room = rooms.get(user.getRoom());
         if (room != null) {
             room.remove(user.getId());
+
+            if (room.size() == 0) {
+                rooms.remove(user.getRoom());
+            }
         }
 
         roomService.update(user, ACTION.UNREGISTER);
