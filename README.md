@@ -5,6 +5,7 @@
 Chat built in Java Spring using Websockets and Redis Pub/Sub
 
 - The redis pub/sub system enables the api to scale horizontally.
+  - `make init-db` to start redis server locally
 
 - The CI is on github-actions. Check `./github/workflows/main.yml`
 
